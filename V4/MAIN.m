@@ -17,7 +17,7 @@ m = [% Each column corresponds to a material property (thickness, young modulus,
 ];
 
 % 1.2 Build geometry (mesh)
-data.c = 2; % chord length
+data.c = 2.08; % chord length
 
 h1 = 0.25*data.c; h2 = 0.15*data.c;
 d = 0.3*data.c;
@@ -80,16 +80,16 @@ Mz_p = 1;
 
 %% 3) BEAM ANALYSIS
 
-b = 16; 
+b = 9.115; 
 be = 0.25*b; 
 zm = 0.48*data.c; 
 za = 0.25*data.c; 
 ze = 0.3*data.c; 
-v_inf = 750*10/36; 
-rho = 1.225; 
-Cl = 0.1; 
-W =  140*9.81; 
-We = 2100*9.81;
+v_inf = 152.83*10/36; 
+rho = 1.20; 
+Cl = 2.263; 
+W =  (9500/2)*9.81; 
+We = 0*9.81;
 nnodes = 513; 
 nnode_mot = round(nnodes/b * be);
 xi_S = d + 0.3*data.c - Xs; % Distància del LE al SC

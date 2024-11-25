@@ -4,23 +4,26 @@ function [fe,me,x_nod] = Element_function (be,b,ze,za,zm,data,v_inf,rho,Cl,nnode
     x_nod = zeros(nnodes,3);
     x = 0:delta_x:b;
     x_nod(:,1) = x;
-    
 
-    l = 0.5 * rho * v_inf^2 * data.c * Cl * sqrt(1-(x./b).^2);
+    deltaXvector = zeros(1,size(x,2));
+    deltaXvector(:) = delta_x; 
+
+    l = 0.5 * rho * v_inf^2 * data.c * Cl * deltaXvector;%sqrt(1-(x./b).^2);
     fn = zeros (3,nnodes);
     fe = zeros (3,nnodes-1);
     me = zeros (1,nnodes-1);
 
-
+    wVec = zeros(1,size(x,2));
+    wVec(:) = (W/b) * delta_x;
 
     for i = 1:nnodes
-        fn(2,i) = -W + l(i);
+        fn(2,i) = -wVec(i) + l(i);
     end
 
     
     for i = 1:nnodes-1
         fe(:,i) = (fn(:,i)+fn(:,i+1))/2;
-        me(i) = (-2*W*(xi_S-zm)+(l(i)+l(i+1))*(xi_S-za))/2; 
+        me(i) = (-2*wVec(i)*(xi_S-zm)+(l(i)+l(i+1))*(xi_S-za))/2; 
     end
     % 
     % index_we = find(x >= (be-delta_x/2) & x <= (be+delta_x/2));
