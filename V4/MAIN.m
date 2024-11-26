@@ -143,39 +143,37 @@ u_tip_ref = u(end-2:end,1);
 % 
 % save open.mat Mtelopen Selopen Mbelopen uopen;
 
-load open.mat
+%load open.mat
 
 figure(4)
-plot(x_nodes_biga(1:end-1,1),Sel,x_nodes_biga(1:end-1,1),Selopen);
+plot(x_nodes_biga(1:end-1,1),Sel);
 title('Fuerza de cortante a lo largo de la envergadura'); grid on;
 xlabel('Envergadura (m)'); ylabel('Fuerza de Cortante (N)');
-legend ("Sección cerrada", "Sección abierta");
 % set(gca, 'YScale', 'log')
 % set(gca, 'XScale', 'log')
 
 figure(5)
-plot(x_nodes_biga(1:end-1,1),Mbel,x_nodes_biga(1:end-1,1),Mbelopen);
+plot(x_nodes_biga(1:end-1,1),Mbel);
 title('Momento flector a lo largo de la envergadura'); grid on;
 xlabel('Envergadura (m)'); ylabel('Momento Flector (Nm)');
-legend ("Sección cerrada", "Sección abierta");
+
 
 figure(6)
-plot(x_nodes_biga(1:end-1,1),Mtel,x_nodes_biga(1:end-1,1),Mtelopen);
+plot(x_nodes_biga(1:end-1,1),Mtel);
 title('Momento torsor a lo largo de la envergadura'); grid on;
 xlabel('Envergadura (m)'); ylabel('Momento Torsor (Nm)');
-legend ("Sección cerrada", "Sección abierta");
 
 figure(7)
-plot(x_nodes_biga(:,1),u(1:3:end),x_nodes_biga(:,1),uopen(1:3:end));
+plot(x_nodes_biga(:,1),u(1:3:end));
 title('Deflexión vertical a lo largo de la envergadura'); grid on;
 xlabel('Envergadura (m)'); ylabel('Deflexión (m)');
-legend ("Sección cerrada", "Sección abierta");
+
 
 figure(8)
-plot(x_nodes_biga(:,1),u(2:3:end),x_nodes_biga(:,1),uopen(2:3:end));
+plot(x_nodes_biga(:,1),u(2:3:end));
 title('Rotación por flexión de la sección'); grid on;
 xlabel('Envergadura (m)'); ylabel('Rotación (rad)');
-legend ("Sección cerrada", "Sección abierta");
+
 
 figure(9)
 % plot(x_nodes_biga(:,1),u(3:3:end));
@@ -189,12 +187,6 @@ plot(x_nodes_biga(:,1),u(3:3:end));
 title('Rotación por torsión perfil cerrado');
 grid('on');
 
-% Bottom plot
-nexttile;
-title('Rotación por torsión perfil abierto');
-xlabel('Envergadura (m)'); ylabel('Rotación (rad)');
-plot(x_nodes_biga(:,1),uopen(3:3:end),'red')
-grid('on');
 
 
 

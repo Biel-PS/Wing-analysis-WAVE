@@ -16,14 +16,17 @@ function [fe,me,x_nod] = Element_function (be,b,ze,za,zm,data,v_inf,rho,Cl,nnode
     wVec = zeros(1,size(x,2));
     wVec(:) = (W/b) * delta_x;
 
+    fn(2,1) = -W;
+
     for i = 1:nnodes
-        fn(2,i) = -wVec(i) + l(i);
+        %fn(2,i) = -wVec(i) + l(i);
+        fn(2,i) = fn(2,i)  + l(i);
     end
 
     
     for i = 1:nnodes-1
         fe(:,i) = (fn(:,i)+fn(:,i+1))/2;
-        me(i) = (-2*wVec(i)*(xi_S-zm)+(l(i)+l(i+1))*(xi_S-za))/2; 
+        me(i) = (-2*W*(xi_S-zm)+(l(i)+l(i+1))*(xi_S-za))/2; 
     end
     % 
     % index_we = find(x >= (be-delta_x/2) & x <= (be+delta_x/2));
