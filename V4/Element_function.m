@@ -23,6 +23,8 @@ function [fe,me,x_nod] = Element_function (be,b,ze,za,zm,data,v_inf,rho,Cl,nnode
         fn(2,i) = fn(2,i)  + l(i);
     end
 
+    FuerzaTotal = sum(fn(2,:))
+
     
     for i = 1:nnodes-1
         fe(:,i) = (fn(:,i)+fn(:,i+1))/2;
