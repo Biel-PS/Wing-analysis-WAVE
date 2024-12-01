@@ -97,7 +97,7 @@ W =  (9500/2)*9.81;
 Cl = W/(0.5 * rho * v_inf^2 * data.c*b);
 
 We = 0*9.81;
-nnodes = 5000; 
+nnodes = 1000; 
 nnode_mot = round(nnodes/b * be);
 xi_S = d + 0.3*data.c - Xs; % Distància del LE al SC
 
@@ -244,8 +244,9 @@ Mz_p = 1;
 % posmax_o = pos_o(:,index_o);
 
 % Closed
+
 open = 0;
-[sigVM_c,pos_c] = VonMises(open,h1,h2,d,nnodes,data,m,Sel,Mbel,Mtel);
+[sigVM_c,pos_c] = VonMises(open,h1,h2,d,nnodesSec,data,m,Sel,Mbel,Mtel);
 
 [sigmax_c, index_c] = min(sigVM_c);
 posmax_c = pos_c(:,index_c);
@@ -254,13 +255,13 @@ posmax_c = pos_c(:,index_c);
 
 sigmax_cVec(1:1:size(x_nodes_biga,1)) = sigmax_c;
 
-figure(6)
+figure(11);
 hold on
-plot(x_nodes_biga(1:end,1),sigma(1,:));
-plot(x_nodes_biga(1:end,1),sigma(2,:));
-plot(x_nodes_biga(1:end-1,1),sigVM_c);
+plot(x_nodes_biga(1:end-1,1),sigma(1,:));
+%plot(x_nodes_biga(1:end-1,1),sigma(2,:));
+%plot(x_nodes_biga(1:end-1,1),sigVM_c);
 hold off
-title('Tension ala vs tension maxima de von misses'); grid on;
+title('Stress among one half of the wing span'); grid on;
 xlabel('Envergadura (m)'); ylabel('Tension (Pa)');
 
 
